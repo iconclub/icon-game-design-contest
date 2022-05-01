@@ -1,17 +1,19 @@
 <script lang="ts">
   import { isAuthenticated } from "../../stores/auth.store";
+  import { game } from "../../stores/game.store";
   import { modal } from "../../stores/modal.store";
 
   import ModalSignIn from "../Modal/SignIn.svelte";
 
   export let data = {
-    thumbnail: "",
     name: "",
     team: "",
+    thumbnail: "",
+    source: "",
   };
 
   function play() {
-    console.log("played");
+    $game.playing = data.source;
   }
 
   function vote() {
@@ -28,7 +30,8 @@
     <h5 class="game__team">By {data.team}</h5>
   </div>
   <div class="game__action">
-    <button type="button" class="btn btn--success" on:click="{vote}">Vote</button>
+    <button type="button" class="btn btn--cube-2-outline" on:click="{vote}">Vote</button>
+    <button type="button" class="btn btn--cube-1" on:click="{play}">Play</button>
   </div>
 </div>
 
@@ -36,11 +39,9 @@
 
 <style>
   .game {
-    width: 250px;
+    width: 200px;
     height: max-content;
     border: 3px solid #ccc;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
   }
 
   .game:hover {
@@ -49,10 +50,11 @@
   }
 
   .game__thumbnail {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     margin-bottom: 10px;
+    cursor: pointer;
   }
 
   .game__detail {
@@ -60,8 +62,7 @@
   }
 
   .game__title {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     width: calc(100%);
     white-space: nowrap;
     overflow: hidden;
@@ -69,16 +70,16 @@
   }
 
   .game__team {
+    font-size: 0.7rem;
     font-style: italic;
     text-align: end;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   .game__action {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     border-top: 1px solid #ccc;
-    padding: 10px;
-    background-color: var(--light);
+    padding: 5px 10px;
   }
 </style>

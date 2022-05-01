@@ -9,6 +9,11 @@
   --secondary: #6c757d;
   --light: hsl(0, 0%, 96%);
   --dark: hsl(0, 0%, 21%);
+
+  --main: #2e3192;
+  --cube-1: var(--main);
+  --cube-2: #79b5bc;
+  --cube-3: #e8d5b5;
 }
 
 @font-face {
@@ -46,10 +51,11 @@ option {
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 4px;
+  margin: 4px;
 }
 
 .btn:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.2);
 }
 
 .btn--secondary {
@@ -60,11 +66,32 @@ option {
   background-color: var(--success);
 }
 
-.btn--danger {
-  background-color: var(--danger);
+.btn--cube-1 {
+  background-color: var(--cube-1);
 }
 
-.btn--light {
-  background-color: var(--light);
-  color: black;
+.btn--cube-1-outline {
+  background-color: transparent;
+  border: 1px solid var(--cube-1);
+  color: var(--cube-1);
+}
+
+.btn--cube-1-outline:hover {
+  background-color: var(--cube-1);
+  color: white;
+}
+
+.btn--cube-2 {
+  background-color: var(--cube-2);
+}
+
+.btn--cube-2-outline {
+  background-color: transparent;
+  border: 1px solid var(--cube-2);
+  color: var(--cube-2);
+}
+
+.btn--cube-2-outline:hover {
+  background-color: var(--cube-2);
+  color: white;
 }
