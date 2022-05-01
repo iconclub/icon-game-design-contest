@@ -3,7 +3,7 @@
   import jwt_decode from "jwt-decode";
 
   import { authApi } from "../../apis/auth.api";
-  import { isAuthenticated } from "../../stores/auth.store";
+  import { auth } from "../../stores/auth.store";
   import { user } from "../../stores/user.store";
   import { modal } from "../../stores/modal.store";
 
@@ -25,14 +25,16 @@
       idToken: response.credential,
     });
 
-    const decoded = jwt_decode(data.accessToken) as any;
+    const decodedToken = jwt_decode(data.accessToken) as any;
+    const decodedCredential = jwt_decode(response.credential) as any;
 
-    $isAuthenticated = true;
+    $auth.hasSignedIn = true;
     $user = {
-      _id: decoded.sub,
-      email: decoded.email,
-      name: decoded.name,
-      role: decoded.role,
+      _id: decodedToken.sub,
+      email: decodedToken.email,
+      name: decodedToken.name,
+      role: decodedToken.role,
+      avatar: decodedCredential.picture,
     };
 
     modal.hide();

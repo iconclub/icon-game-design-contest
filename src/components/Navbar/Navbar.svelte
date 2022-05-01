@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { isAuthenticated } from "../../stores/auth.store";
   import { user } from "../../stores/user.store";
 
-  let name = "Guest";
-
-  if ($isAuthenticated) {
-    name = $user.name;
-  }
+  $: name = $user.name || "Guest";
+  $: avatar = $user.avatar || "/images/default_avatar_retro.jpg";
 </script>
 
 <nav class="navbar">
@@ -17,7 +13,7 @@
   <div class="navbar__right">
     <div class="navbar__item">
       Hello, {name}
-      <img src="/images/default_avatar_retro.jpg" alt="Avatar" class="navbar__avatar" />
+      <img src="{avatar}" alt="Avatar" class="navbar__avatar" />
     </div>
   </div>
 </nav>

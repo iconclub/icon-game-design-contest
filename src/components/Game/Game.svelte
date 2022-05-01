@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isAuthenticated } from "../../stores/auth.store";
+  import { auth } from "../../stores/auth.store";
   import { game } from "../../stores/game.store";
   import { modal } from "../../stores/modal.store";
 
@@ -17,7 +17,7 @@
   }
 
   function vote() {
-    if (!$isAuthenticated) {
+    if (!$auth.hasSignedIn) {
       modal.display();
     }
   }
