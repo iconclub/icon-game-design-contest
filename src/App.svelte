@@ -1,33 +1,19 @@
 <script lang="ts">
-  export let name: string;
+  import GoogleOneTap from "./components/Google/OneTap.svelte";
+  import Game from "./components/Game/Game.svelte";
+  import GameList from "./components/Game/List.svelte";
 </script>
 
-<main>
-  <h1>Hello {name}!</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte
-    apps.
-  </p>
-</main>
+<GoogleOneTap />
+
+<div class="container">
+  <GameList />
+</div>
 
 <style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+  .container {
+    max-width: 1024px;
+    margin: 100px auto;
+    padding: 0 20px;
   }
 </style>
