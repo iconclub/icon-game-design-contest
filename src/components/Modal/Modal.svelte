@@ -5,7 +5,6 @@
 
   function onClose() {
     modal.hide();
-    document.querySelector("html").style.overflow = "visible";
   }
 
   function onEscDown(e: KeyboardEvent) {
@@ -18,7 +17,7 @@
 <svelte:window on:keydown="{onEscDown}" />
 
 {#if $modal.visible}
-  <div class="modal" transition:fade="{{ duration: 200 }}">
+  <div class="modal" transition:fade="{{ duration: 200 }}" on:click="{onClose}">
     <div class="modal__content">
       <div class="modal__header">
         <slot name="title">
@@ -50,10 +49,7 @@
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
     height: 100%;
-    min-height: 70vh;
     z-index: 1050;
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 
   .modal__content {
@@ -61,7 +57,7 @@
     width: 50vw;
     max-width: 500px;
     min-width: 400px;
-    margin: 100px auto;
+    margin: 10vh auto;
     border-radius: 4px;
   }
 
