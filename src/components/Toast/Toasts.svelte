@@ -2,8 +2,6 @@
   import { dismissToast, toasts } from "../../stores/toast.store";
 
   import Toast from "./Toast.svelte";
-
-  console.log($toasts);
 </script>
 
 {#if $toasts}
