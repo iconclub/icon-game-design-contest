@@ -38,10 +38,6 @@
     color: white;
   }
 
-  .navbar__brand:hover {
-    color: var(--cube-3);
-  }
-
   .navbar__logo {
     width: 40px;
     margin-right: 15px;
