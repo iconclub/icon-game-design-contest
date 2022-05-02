@@ -4,8 +4,9 @@
 
   import { authApi } from "../../apis/auth.api";
   import { auth } from "../../stores/auth.store";
-  import { user } from "../../stores/user.store";
   import { modal } from "../../stores/modal.store";
+  import { addToast } from "../../stores/toast.store";
+  import { user } from "../../stores/user.store";
 
   onMount(() => {
     function disableGoogleOneTapBelowLaptop() {
@@ -38,6 +39,8 @@
     };
 
     modal.hide();
+
+    addToast({ message: "Successfully signed in!", type: "success" });
   };
 </script>
 

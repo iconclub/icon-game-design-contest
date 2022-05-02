@@ -3,6 +3,7 @@
 
   import { authApi } from "../../apis/auth.api";
   import { auth } from "../../stores/auth.store";
+  import { addToast } from "../../stores/toast.store";
   import { user } from "../../stores/user.store";
 
   window.handleCredentialResponse = async (response) => {
@@ -21,6 +22,8 @@
       role: decodedToken.role,
       avatar: decodedCredential.picture,
     };
+
+    addToast({ message: "Successfully signed in!", type: "success" });
   };
 </script>
 
