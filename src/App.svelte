@@ -1,15 +1,15 @@
 <script lang="ts">
   import GoogleOneTap from "./components/Google/OneTap.svelte";
   import Navbar from "./components/Navbar/Navbar.svelte";
-  import GamePlayground from "./components/Game/Playground.svelte";
+  import GamePlaying from "./components/Game/Playing.svelte";
   import GameList from "./components/Game/List.svelte";
 </script>
 
-<GoogleOneTap />
-
 <Navbar />
 
-<GamePlayground />
+<GoogleOneTap />
+
+<GamePlaying />
 
 <div class="container">
   <GameList />
