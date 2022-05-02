@@ -55,7 +55,17 @@ option {
 }
 
 .btn:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
+}
+
+.btn--disabled {
+  background-color: var(--light);
+  color: var(--secondary);
+  cursor: not-allowed;
+}
+
+.btn--disabled:hover {
+  filter: none;
 }
 
 .btn--secondary {

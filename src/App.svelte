@@ -4,6 +4,7 @@
   import GoogleOneTap from "./components/Google/OneTap.svelte";
   import GamePlaying from "./components/Game/Playing.svelte";
   import GameList from "./components/Game/List.svelte";
+  import Vote from "./components/Vote/Vote.svelte";
 </script>
 
 <Navbar />
@@ -13,6 +14,8 @@
 <GoogleOneTap />
 
 <GamePlaying />
+
+<Vote />
 
 <div class="container">
   <GameList />

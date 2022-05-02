@@ -2,15 +2,22 @@
   import { auth } from "../../stores/auth.store";
   import { game } from "../../stores/game.store";
   import { modal } from "../../stores/modal.store";
+  import { addToast } from "../../stores/toast.store";
+  import { user } from "../../stores/user.store";
+  import { votes, addVoteGame, removeVoteGame } from "../../stores/vote.store";
 
   import ModalSignIn from "../Modal/SignIn.svelte";
 
   export let data = {
+    _id: "",
     name: "",
     team: "",
     thumbnail: "",
     source: "",
   };
+
+  let btnVoteRef = null;
+  let isVoted = false;
 
   function play() {
     $game.playing = data.source;
@@ -19,7 +26,47 @@
   function vote() {
     if (!$auth.hasSignedIn) {
       modal.display();
+      return;
     }
+
+    if ($user.hasVoted) {
+      addToast({
+        message: "You can't vote after submitting your votes!",
+        type: "error",
+      });
+      return;
+    }
+
+    if (isVoted) {
+      isVoted = false;
+      removeVoteGame(data._id);
+      markAsNotVoted();
+      return;
+    }
+
+    if ($votes.length >= 3) {
+      addToast({
+        message: "You can't vote more than 3 games",
+        type: "error",
+      });
+      return;
+    }
+
+    isVoted = true;
+    addVoteGame({ _id: data._id, name: data.name });
+    markAsVoted();
+  }
+
+  function markAsVoted() {
+    btnVoteRef.innerHTML = "&#x2714;";
+    btnVoteRef.classList.remove("btn--cube-2-outline");
+    btnVoteRef.classList.add("btn--cube-2");
+  }
+
+  function markAsNotVoted() {
+    btnVoteRef.innerHTML = "Vote";
+    btnVoteRef.classList.remove("btn--cube-2");
+    btnVoteRef.classList.add("btn--cube-2-outline");
   }
 </script>
 
@@ -30,7 +77,14 @@
     <h5 class="game__team">By {data.team}</h5>
   </div>
   <div class="game__action">
-    <button type="button" class="btn btn--cube-2-outline" on:click="{vote}">Vote</button>
+    <button
+      type="button"
+      class="btn btn--cube-2-outline"
+      on:click="{vote}"
+      bind:this="{btnVoteRef}"
+    >
+      Vote
+    </button>
     <button type="button" class="btn btn--cube-1" on:click="{play}">Play</button>
   </div>
 </div>
@@ -74,6 +128,7 @@
     font-style: italic;
     text-align: end;
     margin-bottom: 10px;
+    color: var(--link);
   }
 
   .game__action {

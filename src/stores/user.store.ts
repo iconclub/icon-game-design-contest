@@ -5,5 +5,7 @@ export const user = writable({
   name: "",
   email: "",
   role: "",
+  hasVoted: false,
+  gamesVoted: [],
   avatar: "",
 });

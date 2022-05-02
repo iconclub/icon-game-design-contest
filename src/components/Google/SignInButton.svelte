@@ -35,6 +35,8 @@
       email: decodedToken.email,
       name: decodedToken.name,
       role: decodedToken.role,
+      hasVoted: decodedToken.hasVoted,
+      gamesVoted: decodedToken.gamesVoted,
       avatar: decodedCredential.picture,
     };
 

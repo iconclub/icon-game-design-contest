@@ -5,7 +5,7 @@
 
 <Modal>
   <svelte:fragment slot="title">
-    <h5 class="modal__title">Sign In Required!</h5>
+    <h5 class="modal__title">Sign In</h5>
   </svelte:fragment>
 
   <p class="modal__message">Please sign in to continue.</p>
