@@ -2,7 +2,7 @@
   import { user } from "../../stores/user.store";
 
   $: name = $user.name || "Guest";
-  $: avatar = $user.avatar || "/images/default_avatar_retro.jpg";
+  $: avatar = $user.avatar || "images/default_avatar_retro.jpg";
 </script>
 
 <nav class="navbar">
