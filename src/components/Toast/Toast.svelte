@@ -1,10 +1,6 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import { fade, fly } from "svelte/transition";
-
-  import SuccessIcon from "./SuccessIcon.svelte";
-  import ErrorIcon from "./ErrorIcon.svelte";
-  import InfoIcon from "./InfoIcon.svelte";
+  import { fly } from "svelte/transition";
 
   export let type = "error";
 
@@ -22,11 +18,11 @@
   out:fly="{{ x: 200 }}"
 >
   {#if type === "success"}
-    <SuccessIcon width="1.1em" />
+    <span class="material-icons">check_circle</span>
   {:else if type === "error"}
-    <ErrorIcon width="1.1em" />
+    <span class="material-icons">warning</span>
   {:else}
-    <InfoIcon width="1.1em" />
+    <span class="material-icons">info</span>
   {/if}
 
   <div class="toast__content">
@@ -41,12 +37,11 @@
 <style>
   .toast {
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.2rem;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
-    margin: 0 auto 0.5rem auto;
-    width: 20rem;
+    width: 250px;
+    margin-bottom: 10px;
   }
 
   .toast--error {
@@ -69,9 +64,8 @@
     color: white;
     background: transparent;
     border: none;
-    padding: 0;
-    margin: 0 0 0 auto;
-    line-height: 1;
-    font-size: 1rem;
+    font-size: 1.3rem;
+    margin-left: auto;
+    cursor: pointer;
   }
 </style>

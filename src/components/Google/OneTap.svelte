@@ -25,7 +25,7 @@
       avatar: decodedCredential.picture,
     };
 
-    addToast({ message: "Successfully signed in!", type: "success" });
+    addToast({ message: "You're signed in", type: "success" });
   };
 </script>
 

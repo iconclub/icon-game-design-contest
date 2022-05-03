@@ -85,7 +85,7 @@
 
   .vote-stats__content {
     width: 100%;
-    max-width: 768px;
+    max-width: 500px;
     padding: 15px;
     display: flex;
     justify-content: space-between;
