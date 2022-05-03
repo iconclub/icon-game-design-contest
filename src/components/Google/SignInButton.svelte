@@ -9,25 +9,19 @@
   import { user } from "../../stores/user.store";
 
   onMount(() => {
-    function disableGoogleOneTapBelowLaptop() {
-      const mediaQuery = window.matchMedia("(max-width: 1024px)");
-      if (mediaQuery.matches) {
-        document.querySelector("#g_id_onload").setAttribute("data-auto_prompt", "false");
-      } else {
-        document.querySelector("#g_id_onload").setAttribute("data-auto_prompt", "true");
-      }
+    function disableGoogleOneTap() {
+      document.querySelector("#g_id_onload").setAttribute("data-auto_prompt", "false");
     }
-    disableGoogleOneTapBelowLaptop();
+    disableGoogleOneTap();
   });
 
   // @Override - OneTap.svelte
   window.handleCredentialResponse = async (response) => {
-    const data = await authApi.sendPayload({
+    const data = await authApi.signInWithGoogle({
       idToken: response.credential,
     });
 
     const decodedToken = jwt_decode(data.accessToken) as any;
-    const decodedCredential = jwt_decode(response.credential) as any;
 
     $auth.hasSignedIn = true;
     $user = {
@@ -37,7 +31,7 @@
       role: decodedToken.role,
       hasVoted: decodedToken.hasVoted,
       gamesVoted: decodedToken.gamesVoted,
-      avatar: decodedCredential.picture,
+      avatar: decodedToken.avatar,
     };
 
     modal.hide();

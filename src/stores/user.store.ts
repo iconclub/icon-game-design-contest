@@ -4,8 +4,8 @@ export const user = writable({
   _id: "",
   name: "",
   email: "",
+  avatar: "",
   role: "",
   hasVoted: false,
   gamesVoted: [],
-  avatar: "",
 });

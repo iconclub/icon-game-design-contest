@@ -5,7 +5,7 @@ interface SignInPayload {
 }
 
 class AuthApi {
-  public async sendPayload(payload: SignInPayload): Promise<{ accessToken: string }> {
+  public async signInWithGoogle(payload: SignInPayload): Promise<{ accessToken: string }> {
     const res = await api.post("/auth/google/signin", payload);
 
     if (res.statusCode === 200) {
@@ -13,6 +13,20 @@ class AuthApi {
     }
 
     throw new Error("Failed to sign in");
+  }
+
+  public async getProfile() {
+    const res = await api.post("/auth/profile");
+
+    if (res.statusCode === 200) {
+      return res.data;
+    }
+
+    if (res.statusCode === 401) {
+      return null;
+    }
+
+    throw new Error("Failed to get profile");
   }
 }
 

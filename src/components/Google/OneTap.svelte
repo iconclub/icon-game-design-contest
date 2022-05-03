@@ -7,12 +7,11 @@
   import { user } from "../../stores/user.store";
 
   window.handleCredentialResponse = async (response) => {
-    const data = await authApi.sendPayload({
+    const data = await authApi.signInWithGoogle({
       idToken: response.credential,
     });
 
     const decodedToken = jwt_decode(data.accessToken) as any;
-    const decodedCredential = jwt_decode(response.credential) as any;
 
     $auth.hasSignedIn = true;
     $user = {
@@ -22,7 +21,7 @@
       role: decodedToken.role,
       hasVoted: decodedToken.hasVoted,
       gamesVoted: decodedToken.gamesVoted,
-      avatar: decodedCredential.picture,
+      avatar: decodedToken.avatar,
     };
 
     addToast({ message: "You're signed in", type: "success" });
@@ -33,9 +32,11 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </svelte:head>
 
-<div
-  id="g_id_onload"
-  data-client_id="769272591537-uc3vsgm4fi497461vhkcaugm766q3gqg.apps.googleusercontent.com"
-  data-callback="handleCredentialResponse"
-  data-locale="en"
-></div>
+{#if !$auth.hasSignedIn}
+  <div
+    id="g_id_onload"
+    data-client_id="769272591537-uc3vsgm4fi497461vhkcaugm766q3gqg.apps.googleusercontent.com"
+    data-callback="handleCredentialResponse"
+    data-locale="en"
+  ></div>
+{/if}
