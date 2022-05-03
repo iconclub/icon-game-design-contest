@@ -1,0 +1,107 @@
+:root {
+  /* Bulma colors */
+  --primary: hsl(171, 100%, 41%);
+  --success: hsl(141, 53%, 53%);
+  --info: hsl(204, 86%, 53%);
+  --warning: hsl(48, 100%, 67%);
+  --danger: hsl(348, 100%, 61%);
+  --link: hsl(217, 71%, 53%);
+  --secondary: #6c757d;
+  --light: hsl(0, 0%, 96%);
+  --dark: hsl(0, 0%, 21%);
+
+  --main: #2e3192;
+  --cube-1: var(--main);
+  --cube-2: #79b5bc;
+  --cube-3: #e8d5b5;
+}
+
+@font-face {
+  font-family: "Retro Gaming";
+  src: url("./fonts/Retro Gaming.ttf");
+}
+
+html,
+body,
+form,
+fieldset,
+table,
+tr,
+td,
+img {
+  font-family: "Retro Gaming";
+  font-size: 90%;
+}
+
+input,
+button,
+select,
+textarea,
+optgroup,
+option {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn--disabled {
+  background-color: var(--light);
+  color: var(--secondary);
+  cursor: not-allowed;
+}
+
+.btn--disabled:hover {
+  filter: none;
+}
+
+.btn--secondary {
+  background-color: var(--secondary);
+}
+
+.btn--success {
+  background-color: var(--success);
+}
+
+.btn--cube-1 {
+  background-color: var(--cube-1);
+}
+
+.btn--cube-1-outline {
+  background-color: transparent;
+  border: 1px solid var(--cube-1);
+  color: var(--cube-1);
+}
+
+.btn--cube-1-outline:hover {
+  background-color: var(--cube-1);
+  color: white;
+}
+
+.btn--cube-2 {
+  background-color: var(--cube-2);
+}
+
+.btn--cube-2-outline {
+  background-color: transparent;
+  border: 1px solid var(--cube-2);
+  color: var(--cube-2);
+}
+
+.btn--cube-2-outline:hover {
+  background-color: var(--cube-2);
+  color: white;
+}
