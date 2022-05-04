@@ -26,6 +26,10 @@ class AuthApi {
       return null;
     }
 
+    if (res.statusCode === 404) {
+      return null;
+    }
+
     throw new Error("Failed to get profile");
   }
 }
