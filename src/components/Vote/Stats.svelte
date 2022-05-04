@@ -4,6 +4,8 @@
   import { user } from "../../stores/user.store";
   import { votes } from "../../stores/vote.store";
 
+  let btnSubmitRef = null;
+
   $: count = $votes.length;
 
   async function submitVotes() {
@@ -17,6 +19,9 @@
       });
       return;
     }
+
+    // Prevent multiple clicks
+    btnSubmitRef.disabled = true;
 
     try {
       await voteApi.sendVotes(voter, games);
@@ -32,6 +37,10 @@
         type: "error",
       });
     }
+  }
+
+  function reset() {
+    $votes = [];
   }
 </script>
 
@@ -55,8 +64,12 @@
     <div class="vote-stats__action">
       {#if $user.hasVoted}
         <button type="button" class="btn btn--disabled" disabled>Submit</button>
+        <button type="button" class="btn btn--disabled" disabled>Reset</button>
       {:else}
-        <button type="button" class="btn" on:click="{submitVotes}">Submit</button>
+        <button type="button" class="btn" on:click="{submitVotes}" bind:this="{btnSubmitRef}">
+          Submit
+        </button>
+        <button type="button" class="btn btn--danger" on:click="{reset}">Reset</button>
       {/if}
     </div>
   </div>
@@ -96,6 +109,7 @@
 
   .vote-stats__action {
     display: flex;
+    flex-direction: column;
     align-items: center;
   }
 </style>

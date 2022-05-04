@@ -11,7 +11,8 @@
   export let name: string;
 
   let btnVoteRef = null;
-  let count = $votes.filter((vote) => vote._id === _id).length || 0;
+
+  $: count = $votes.filter((vote) => vote._id === _id).length || 0;
 
   function vote() {
     if (!$auth.hasSignedIn) {
