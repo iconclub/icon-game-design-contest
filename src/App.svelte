@@ -6,8 +6,8 @@
   import { user } from "./stores/user.store";
   import { addVoteGame } from "./stores/vote.store";
 
-  import Loading from "./components/Loading/Loading.svelte";
-  import ErrorLoading from "./components/Error/Loading.svelte";
+  import LoadingSpinner from "./components/Loading/Spinner.svelte";
+  import LoadingError from "./components/Loading/Error.svelte";
   import Navbar from "./components/Navbar/Navbar.svelte";
   import Toasts from "./components/Toast/Toasts.svelte";
   import GoogleOneTap from "./components/Google/OneTap.svelte";
@@ -54,7 +54,7 @@
 
 {#await initApp()}
   <div class="container-loading">
-    <Loading
+    <LoadingSpinner
       size="{150}"
       durationMultiplier="{1.2}"
       colorOuter="{'#2e3192'}"
@@ -76,7 +76,7 @@
   </div>
 {:catch error}
   <div class="container-loading">
-    <ErrorLoading />
+    <LoadingError />
   </div>
 {/await}
 
