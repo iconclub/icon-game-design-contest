@@ -3,8 +3,11 @@
 
   import { authApi } from "../../apis/auth.api";
   import { auth } from "../../stores/auth.store";
+  import { game } from "../../stores/game.store";
+  import { modal } from "../../stores/modal.store";
   import { addToast } from "../../stores/toast.store";
   import { user } from "../../stores/user.store";
+  import { addVoteGame } from "../../stores/vote.store";
 
   window.handleCredentialResponse = async (response) => {
     const data = await authApi.signInWithGoogle({
@@ -14,6 +17,7 @@
     const decodedToken = jwt_decode(data.accessToken) as any;
 
     $auth.hasSignedIn = true;
+
     $user = {
       _id: decodedToken.sub,
       email: decodedToken.email,
@@ -23,6 +27,20 @@
       gamesVoted: decodedToken.gamesVoted,
       avatar: decodedToken.avatar,
     };
+
+    if ($user.hasVoted) {
+      $user.gamesVoted.forEach((gameId) => {
+        const gameFound = $game.list.find((g) => g._id === gameId);
+        if (gameFound) {
+          addVoteGame({
+            _id: gameFound._id,
+            name: gameFound.name,
+          });
+        }
+      });
+    }
+
+    modal.hide(); // Close the modal in case it's open in SignInButton.svelte
 
     addToast({ message: "You're signed in", type: "success" });
   };

@@ -1,12 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import jwt_decode from "jwt-decode";
-
-  import { authApi } from "../../apis/auth.api";
-  import { auth } from "../../stores/auth.store";
-  import { modal } from "../../stores/modal.store";
-  import { addToast } from "../../stores/toast.store";
-  import { user } from "../../stores/user.store";
 
   onMount(() => {
     function disableGoogleOneTap() {
@@ -15,29 +8,7 @@
     disableGoogleOneTap();
   });
 
-  // @Override - OneTap.svelte
-  window.handleCredentialResponse = async (response) => {
-    const data = await authApi.signInWithGoogle({
-      idToken: response.credential,
-    });
-
-    const decodedToken = jwt_decode(data.accessToken) as any;
-
-    $auth.hasSignedIn = true;
-    $user = {
-      _id: decodedToken.sub,
-      email: decodedToken.email,
-      name: decodedToken.name,
-      role: decodedToken.role,
-      hasVoted: decodedToken.hasVoted,
-      gamesVoted: decodedToken.gamesVoted,
-      avatar: decodedToken.avatar,
-    };
-
-    modal.hide();
-
-    addToast({ message: "You're signed in", type: "success" });
-  };
+  // Response handler is defined in OneTap.svelte
 </script>
 
 <!-- 
