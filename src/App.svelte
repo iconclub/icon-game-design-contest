@@ -4,7 +4,7 @@
   import { auth } from "./stores/auth.store";
   import { game } from "./stores/game.store";
   import { user } from "./stores/user.store";
-  import { votes, addVoteGame } from "./stores/vote.store";
+  import { addVoteGame } from "./stores/vote.store";
 
   import LoadingSpinner from "./components/Loading/Spinner.svelte";
   import LoadingError from "./components/Loading/Error.svelte";
@@ -47,8 +47,6 @@
         }
       });
     }
-
-    console.log($votes);
   }
 </script>
 
