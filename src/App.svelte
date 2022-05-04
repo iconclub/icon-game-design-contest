@@ -5,6 +5,8 @@
   import { game } from "./stores/game.store";
   import { user } from "./stores/user.store";
 
+  import Loading from "./components/Loading/Loading.svelte";
+  import ErrorLoading from "./components/Error/Loading.svelte";
   import Navbar from "./components/Navbar/Navbar.svelte";
   import Toasts from "./components/Toast/Toasts.svelte";
   import GoogleOneTap from "./components/Google/OneTap.svelte";
@@ -35,11 +37,19 @@
   }
 </script>
 
-{#await initApp()}
-  <p>...waiting</p>
-{:then}
-  <Navbar />
+<Navbar />
 
+{#await initApp()}
+  <div class="container-loading">
+    <Loading
+      size="{150}"
+      durationMultiplier="{1.2}"
+      colorOuter="{'#2e3192'}"
+      colorCenter="{'#79b5bc'}"
+      colorInner="{'#e8d5b5'}"
+    />
+  </div>
+{:then}
   <Toasts />
 
   <GoogleOneTap />
@@ -52,7 +62,9 @@
     <GameList />
   </div>
 {:catch error}
-  <p style="color: red">{error.message}</p>
+  <div class="container-loading">
+    <ErrorLoading />
+  </div>
 {/await}
 
 <style>
@@ -60,5 +72,13 @@
     max-width: 1366px;
     margin: 50px auto;
     padding: 0 20px;
+  }
+
+  .container-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 0px 20px;
   }
 </style>
