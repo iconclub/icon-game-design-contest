@@ -4,6 +4,7 @@
   import { auth } from "./stores/auth.store";
   import { game } from "./stores/game.store";
   import { user } from "./stores/user.store";
+  import { addVoteGame } from "./stores/vote.store";
 
   import Loading from "./components/Loading/Loading.svelte";
   import ErrorLoading from "./components/Error/Loading.svelte";
@@ -34,6 +35,18 @@
       hasVoted: profile.hasVoted,
       gamesVoted: profile.gamesVoted,
     };
+
+    if ($user.hasVoted) {
+      $user.gamesVoted.forEach((gameId) => {
+        const gameFound = $game.list.find((g) => g._id === gameId);
+        if (gameFound) {
+          addVoteGame({
+            _id: gameFound._id,
+            name: gameFound.name,
+          });
+        }
+      });
+    }
   }
 </script>
 

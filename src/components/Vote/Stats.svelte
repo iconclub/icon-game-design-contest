@@ -1,23 +1,10 @@
 <script lang="ts">
   import { voteApi } from "../../apis/vote.api";
-  import { game } from "../../stores/game.store";
   import { addToast } from "../../stores/toast.store";
   import { user } from "../../stores/user.store";
-  import { votes, addVoteGame } from "../../stores/vote.store";
+  import { votes } from "../../stores/vote.store";
 
   $: count = $votes.length;
-
-  if ($user.hasVoted) {
-    $user.gamesVoted.forEach((gameId) => {
-      const gameFound = $game.list.find((g) => g._id === gameId);
-      if (gameFound) {
-        addVoteGame({
-          _id: gameFound._id,
-          name: gameFound.name,
-        });
-      }
-    });
-  }
 
   async function submitVotes() {
     const voter = $user._id;

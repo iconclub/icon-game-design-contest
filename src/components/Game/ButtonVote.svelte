@@ -11,11 +11,9 @@
   export let name: string;
 
   let btnVoteRef = null;
-  $: count = $votes.filter((vote) => vote._id === _id).length || 0;
+  let count = $votes.filter((vote) => vote._id === _id).length || 0;
 
   function vote() {
-    count++;
-
     if (!$auth.hasSignedIn) {
       modal.display();
       return;
@@ -33,8 +31,11 @@
     if ($votes.length >= 3) {
       removeVoteGame(_id);
       removeVoteCount();
+      count = 0;
       return;
     }
+
+    count++;
 
     addVoteGame({ _id, name });
     showVoteCount();
@@ -53,8 +54,14 @@
   }
 </script>
 
-<button type="button" class="btn btn--cube-2-outline" on:click="{vote}" bind:this="{btnVoteRef}">
-  Vote
-</button>
+{#if count}
+  <button type="button" class="btn btn--cube-2" on:click="{vote}" bind:this="{btnVoteRef}">
+    ( {count} )
+  </button>
+{:else}
+  <button type="button" class="btn btn--cube-2-outline" on:click="{vote}" bind:this="{btnVoteRef}">
+    Vote
+  </button>
+{/if}
 
 <ModalSignIn />
