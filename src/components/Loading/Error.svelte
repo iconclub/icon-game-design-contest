@@ -13,7 +13,7 @@
 
 <style>
   .error {
-    color: var(--dark);
+    color: gray;
   }
 
   .error__icon .material-icons {
@@ -22,5 +22,6 @@
 
   .error_message {
     font-size: 1.5rem;
+    text-align: center;
   }
 </style>

@@ -51,6 +51,8 @@
 </script>
 
 <Navbar />
+<Toasts />
+<GoogleOneTap />
 
 {#await initApp()}
   <div class="container-loading">
@@ -63,18 +65,12 @@
     />
   </div>
 {:then}
-  <Toasts />
-
-  <GoogleOneTap />
-
   <GamePlaying />
-
   <Vote />
-
   <div class="container">
     <GameList />
   </div>
-{:catch error}
+{:catch}
   <div class="container-loading">
     <LoadingError />
   </div>
@@ -92,6 +88,12 @@
     justify-content: center;
     align-items: center;
     height: 80vh;
-    padding: 0px 20px;
+    padding: 0px 30px;
+  }
+
+  @media (max-width: 768px) {
+    .container-loading {
+      height: 50vh;
+    }
   }
 </style>
