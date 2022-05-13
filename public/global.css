@@ -30,7 +30,6 @@ tr,
 td,
 img {
   font-family: "Retro Gaming";
-  font-size: 90%;
 }
 
 input,
@@ -40,7 +39,6 @@ textarea,
 optgroup,
 option {
   font-family: inherit;
-  font-size: inherit;
 }
 
 .btn {
