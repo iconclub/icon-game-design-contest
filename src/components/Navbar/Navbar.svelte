@@ -7,9 +7,11 @@
 
 <nav class="navbar">
   <a href="/" class="navbar__brand">
-    <img src="favicon.png" alt="logo" class="navbar__logo" />
     Game Design Contest 2022
   </a>
+
+  <img src="logo_4.png" alt="logo" class="navbar__logo" />
+  
   <div class="navbar__right">
     <div class="navbar__item">
       Hello, {name}
@@ -22,10 +24,11 @@
   .navbar {
     background-color: var(--cube-2);
     color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    justify-items: center;
   }
 
   .navbar__brand {
@@ -35,15 +38,15 @@
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
+    text-align: center;
     color: white;
   }
 
   .navbar__logo {
-    width: 40px;
-    margin-right: 15px;
+    height: 50px;
   }
 
-  .navbar__item {
+  .navbar__right {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
