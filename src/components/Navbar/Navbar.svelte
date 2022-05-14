@@ -10,8 +10,8 @@
     Game Design Contest 2022
   </a>
 
-  <img src="logo_4.png" alt="logo" class="navbar__logo" />
-  
+  <img src="images/logo_4.png" alt="Logo" class="navbar__logo" />
+
   <div class="navbar__right">
     <div class="navbar__item">
       Hello, {name}
