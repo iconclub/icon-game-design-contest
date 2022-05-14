@@ -6,16 +6,14 @@
 </script>
 
 <nav class="navbar">
-  <a href="/" class="navbar__brand">
-    Game Design Contest 2022
-  </a>
+  <a href="/" class="navbar__brand">Game Design Contest 2022</a>
 
   <img src="images/logo_4.png" alt="Logo" class="navbar__logo" />
 
   <div class="navbar__right">
     <div class="navbar__item">
-      Hello, {name}
       <img src="{avatar}" alt="Avatar" class="navbar__avatar" />
+      <p class="navbar__user">Hello, {name}</p>
     </div>
   </div>
 </nav>
@@ -53,11 +51,15 @@
     font-weight: bold;
   }
 
+  .navbar__item {
+    display: flex;
+    align-items: center;
+  }
+
   .navbar__avatar {
-    vertical-align: middle;
     width: 40px;
     height: 40px;
-    margin-left: 15px;
+    margin-right: 10px;
     border-radius: 50%;
     object-fit: cover;
   }
