@@ -54,7 +54,6 @@
 
 <Navbar />
 <Toasts />
-<GoogleOneTap />
 
 {#await initApp()}
   <div class="container-loading">
@@ -67,10 +66,15 @@
     />
   </div>
 {:then}
+  {#if !$auth.hasSignedIn}
+    <GoogleOneTap />
+  {/if}
+
   <ModalMobile />
   <ModalSignIn />
   <GamePlaying />
   <Vote />
+
   <div class="container">
     <GameList />
   </div>
