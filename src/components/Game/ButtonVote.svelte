@@ -1,11 +1,10 @@
 <script lang="ts">
   import { auth } from "../../stores/auth.store";
-  import { modal } from "../../stores/modal.store";
   import { addToast } from "../../stores/toast.store";
   import { user } from "../../stores/user.store";
   import { votes, addVoteGame, removeVoteGame } from "../../stores/vote.store";
 
-  import ModalSignIn from "../Modal/SignIn.svelte";
+  import { openModal } from "../Modal/SignIn.svelte";
 
   export let _id: string;
   export let name: string;
@@ -16,7 +15,7 @@
 
   function vote() {
     if (!$auth.hasSignedIn) {
-      modal.display();
+      openModal();
       return;
     }
 
@@ -64,5 +63,3 @@
     Vote
   </button>
 {/if}
-
-<ModalSignIn />

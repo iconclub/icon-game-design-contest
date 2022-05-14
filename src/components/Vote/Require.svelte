@@ -1,12 +1,9 @@
 <script lang="ts">
-  import { modal } from "../../stores/modal.store";
-
-  import ModalSignIn from "../Modal/SignIn.svelte";
+  import { openModal } from "../Modal/SignIn.svelte";
 
   function openSignInModal(e: Event) {
     e.preventDefault();
-
-    modal.display();
+    openModal();
   }
 </script>
 
@@ -19,8 +16,6 @@
     </p>
   </div>
 </div>
-
-<ModalSignIn />
 
 <style>
   .vote-require {

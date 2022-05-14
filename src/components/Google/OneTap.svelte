@@ -4,7 +4,6 @@
   import { authApi } from "../../apis/auth.api";
   import { auth } from "../../stores/auth.store";
   import { game } from "../../stores/game.store";
-  import { modal } from "../../stores/modal.store";
   import { addToast } from "../../stores/toast.store";
   import { user } from "../../stores/user.store";
   import { addVoteGame } from "../../stores/vote.store";
@@ -39,8 +38,6 @@
         }
       });
     }
-
-    modal.hide(); // Close the modal in case it's open in SignInButton.svelte
 
     addToast({ message: "You're signed in", type: "success" });
   };

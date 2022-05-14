@@ -8,6 +8,8 @@
 
   import LoadingSpinner from "./components/Loading/Spinner.svelte";
   import LoadingError from "./components/Loading/Error.svelte";
+  import ModalMobile from "./components/Modal/Mobile.svelte";
+  import ModalSignIn from "./components/Modal/SignIn.svelte";
   import Navbar from "./components/Navbar/Navbar.svelte";
   import Toasts from "./components/Toast/Toasts.svelte";
   import GoogleOneTap from "./components/Google/OneTap.svelte";
@@ -65,6 +67,8 @@
     />
   </div>
 {:then}
+  <ModalMobile />
+  <ModalSignIn />
   <GamePlaying />
   <Vote />
   <div class="container">
@@ -91,7 +95,7 @@
     padding: 0px 30px;
   }
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     .container-loading {
       height: 50vh;
     }
