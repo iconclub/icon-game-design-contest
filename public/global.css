@@ -42,6 +42,11 @@ option {
   font-family: inherit;
 }
 
+body {
+  background-image: url("images/background_blur.png");
+  background-size: cover;
+}
+
 .btn {
   background-color: var(--primary);
   color: white;
