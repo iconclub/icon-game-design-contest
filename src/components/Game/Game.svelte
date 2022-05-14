@@ -30,9 +30,11 @@
 
 <style>
   .game {
-    width: 200px;
+    width: 250px;
     height: max-content;
     border: 3px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
   }
 
   .game:hover {
@@ -44,8 +46,9 @@
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    margin-bottom: 10px;
     cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 
   .game__detail {
