@@ -14,7 +14,7 @@
   .game-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 25px;
     justify-items: center;
   }
 </style>

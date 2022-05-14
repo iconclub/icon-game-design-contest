@@ -35,11 +35,15 @@
     border: 3px solid #ccc;
     border-radius: 5px;
     background-color: white;
+    transition: all 0.2s ease-in-out;
   }
 
   .game:hover {
-    border: 3px solid white;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: 3px solid rgba(240, 46, 170, 0.5);
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+      rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
+      rgba(240, 46, 170, 0.05) 25px 25px;
+    transform: scale(1.05);
   }
 
   .game__thumbnail {
