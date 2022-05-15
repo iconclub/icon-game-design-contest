@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { gameApi } from "../../apis/game.api";
   import { voteApi } from "../../apis/vote.api";
+  import { game } from "../../stores/game.store";
   import { addToast } from "../../stores/toast.store";
   import { user } from "../../stores/user.store";
   import { votes } from "../../stores/vote.store";
@@ -10,9 +12,9 @@
 
   async function submitVotes() {
     const voter = $user._id;
-    const games = $votes.map((vote) => vote._id);
+    const gameChosen = $votes.map((game) => game._id);
 
-    if (games.length === 0) {
+    if (gameChosen.length === 0) {
       addToast({
         message: "You must vote for at least one game!",
         type: "error",
@@ -24,13 +26,17 @@
     btnSubmitRef.disabled = true;
 
     try {
-      await voteApi.sendVotes(voter, games);
+      await voteApi.sendVotes(voter, gameChosen);
+
       addToast({
         message: "Your votes have been submitted!",
         type: "success",
       });
 
       $user.hasVoted = true;
+
+      // Update number of votes on game cards after submitting
+      $game.list = await gameApi.findAll();
     } catch (error) {
       addToast({
         message: error.message,
