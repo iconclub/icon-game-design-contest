@@ -9,6 +9,7 @@
     team: "",
     thumbnail: "",
     source: "",
+    numberOfVotes: 0,
   };
 
   function play() {
@@ -20,7 +21,11 @@
   <img class="game__thumbnail" src="{data.thumbnail}" alt="{data.name}" on:click="{play}" />
   <div class="game__detail">
     <h5 class="game__title">{data.name}</h5>
-    <h5 class="game__team">By {data.team}</h5>
+    <p class="game__team">By {data.team}</p>
+    <p class="game__votes">
+      <span class="material-icons">how_to_vote</span>
+      <span>{data.numberOfVotes}</span>
+    </p>
   </div>
   <div class="game__action">
     <GameButtonVote _id="{data._id}" name="{data.name}" />
@@ -61,18 +66,22 @@
 
   .game__title {
     margin-bottom: 8px;
-    width: calc(100%);
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .game__team {
-    font-size: 0.7rem;
-    font-style: italic;
-    text-align: end;
+    font-size: 0.8rem;
     margin-bottom: 10px;
     color: var(--link);
+  }
+
+  .game__votes {
+    color: gray;
+    display: flex;
+    align-items: center;
   }
 
   .game__action {
