@@ -21,6 +21,11 @@
   src: url("./fonts/Retro Gaming.ttf");
 }
 
+@font-face {
+  font-family: "Bangers";
+  src: url("./fonts/Bangers-Regular.ttf");
+}
+
 html,
 body,
 form,

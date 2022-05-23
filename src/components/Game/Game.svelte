@@ -6,14 +6,20 @@
   export let data = {
     _id: "",
     name: "",
+    description: "",
     team: "",
+    members: [],
     thumbnail: "",
     source: "",
     numberOfVotes: 0,
   };
 
   function play() {
-    $game.playing = data.source;
+    $game.playing = {
+      source: data.source,
+      description: data.description,
+      members: data.members,
+    };
   }
 </script>
 

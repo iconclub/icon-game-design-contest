@@ -4,6 +4,8 @@
 
   import { game } from "../../stores/game.store";
 
+  import GameDescription from "./Description.svelte";
+
   let gamePlayingRef = null;
 
   afterUpdate(() => {
@@ -17,11 +19,11 @@
   });
 
   function onClose() {
-    $game.playing = "";
+    $game.playing.source = "";
   }
 </script>
 
-{#if $game.playing}
+{#if $game.playing.source}
   <div class="playing" transition:scale bind:this="{gamePlayingRef}">
     <button type="button" class="playing__close" on:click="{onClose}">
       <span>&times;</span>
@@ -32,12 +34,14 @@
         <iframe
           title=""
           style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          src="https://arcade.makecode.com/---run?id={$game.playing}"
+          src="https://arcade.makecode.com/---run?id={$game.playing.source}"
           sandbox="allow-popups allow-forms allow-scripts allow-same-origin"
           frameborder="0"></iframe>
       </div>
     </div>
   </div>
+
+  <GameDescription />
 {/if}
 
 <style>
