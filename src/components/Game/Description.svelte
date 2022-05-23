@@ -4,12 +4,14 @@
 
 <div class="description">
   <div class="description__content">
-    <h1 class="description__title">Descriptions</h1>
+    <h1 class="description__name">{$game.playing.name}</h1>
+
+    <h3 class="description__title">Descriptions</h3>
     <p class="description__text">
       {$game.playing.description}
     </p>
 
-    <h1 class="description__title">Team members</h1>
+    <h3 class="description__title">Team members</h3>
     <ul class="description__members">
       {#each $game.playing.members as member}
         <li class="description__member">- {member}</li>
@@ -33,6 +35,13 @@
     padding: 15px;
   }
 
+  .description__name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--cube-1);
+  }
+
   .description__title {
     font-size: 1.6rem;
     color: var(--info);
@@ -48,6 +57,5 @@
 
   .description__member {
     font-size: 1.3rem;
-    margin-left: 10px;
   }
 </style>

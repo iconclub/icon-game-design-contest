@@ -16,6 +16,7 @@
 
   function play() {
     $game.playing = {
+      name: data.name,
       source: data.source,
       description: data.description,
       members: data.members,
