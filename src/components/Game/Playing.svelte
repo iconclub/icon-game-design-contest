@@ -1,19 +1,28 @@
 <script lang="ts">
+  import { afterUpdate } from "svelte";
   import { scale } from "svelte/transition";
 
   import { game } from "../../stores/game.store";
 
+  let gamePlayingRef = null;
+
+  afterUpdate(() => {
+    if (gamePlayingRef) {
+      gamePlayingRef.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    }
+  });
+
   function onClose() {
     $game.playing = "";
-  }
-
-  function focus(el: HTMLElement) {
-    el.focus();
   }
 </script>
 
 {#if $game.playing}
-  <div class="playing" transition:scale use:focus>
+  <div class="playing" transition:scale bind:this="{gamePlayingRef}">
     <button type="button" class="playing__close" on:click="{onClose}">
       <span>&times;</span>
     </button>
