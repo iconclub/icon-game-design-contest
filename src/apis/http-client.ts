@@ -41,10 +41,11 @@ export class HttpClient {
     params = {},
     headers = this.headers
   ): Promise<Response> {
+    const processedBaseUrl = this.processUrl(this.baseUrl);
     const processedUrl = this.processUrl(url);
     const search = new URLSearchParams(params);
 
-    const response = await fetch(`${this.baseUrl}/${processedUrl}?${search}`, {
+    const response = await fetch(`${processedBaseUrl}/${processedUrl}?${search}`, {
       method: "POST",
       headers,
       credentials: "include",
