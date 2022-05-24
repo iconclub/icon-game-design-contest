@@ -23,10 +23,11 @@ export class HttpClient {
   }
 
   public async get(url: string, params = {}): Promise<Response> {
+    const processedBaseUrl = this.processUrl(this.baseUrl);
     const processedUrl = this.processUrl(url);
     const search = new URLSearchParams(params);
 
-    const response = await fetch(`${this.baseUrl}/${processedUrl}?${search}`, {
+    const response = await fetch(`${processedBaseUrl}/${processedUrl}?${search}`, {
       method: "GET",
       credentials: "include",
     });
@@ -54,7 +55,17 @@ export class HttpClient {
   }
 
   private processUrl(url: string): string {
-    return url.startsWith("/") ? url.slice(1) : url;
+    let processedUrl = url;
+
+    if (url.startsWith("/")) {
+      processedUrl = url.slice(1);
+    }
+
+    if (processedUrl.endsWith("/")) {
+      processedUrl = processedUrl.slice(0, -1);
+    }
+
+    return processedUrl;
   }
 }
 
