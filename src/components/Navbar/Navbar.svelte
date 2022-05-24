@@ -1,5 +1,8 @@
 <script lang="ts">
+  import { auth } from "../../stores/auth.store";
   import { user } from "../../stores/user.store";
+
+  import GoogleSignOutButton from "../Google/SignOutButton.svelte";
 
   $: name = $user.name || "Guest";
   $: avatar = $user.avatar || "images/default_avatar_retro.jpg";
@@ -13,7 +16,12 @@
   <div class="navbar__right">
     <div class="navbar__item">
       <img src="{avatar}" alt="Avatar" class="navbar__avatar" />
-      <p class="navbar__user">Hello, {name}</p>
+      <p class="navbar__user">{name}</p>
+    </div>
+    <div class="navbar__item">
+      {#if $auth.hasSignedIn}
+        <GoogleSignOutButton />
+      {/if}
     </div>
   </div>
 </nav>
@@ -45,7 +53,9 @@
   }
 
   .navbar__right {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 20px;
     align-items: center;
     font-size: 1.2rem;
     font-weight: bold;
@@ -62,5 +72,10 @@
     margin-right: 10px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  .navbar__user {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.4rem;
   }
 </style>

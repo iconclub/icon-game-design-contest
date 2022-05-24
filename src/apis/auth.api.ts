@@ -15,6 +15,16 @@ class AuthApi {
     throw new Error("Failed to sign in");
   }
 
+  public async signOut() {
+    const res = await api.post("/auth/signout");
+
+    if (res.statusCode === 200) {
+      return res.data;
+    }
+
+    throw new Error("Failed to sign out");
+  }
+
   public async getProfile() {
     const res = await api.post("/auth/profile");
 
