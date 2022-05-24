@@ -9,7 +9,7 @@
 </script>
 
 <nav class="navbar">
-  <a href="/" class="navbar__brand">Game Design Contest 2022</a>
+  <p class="navbar__brand">Game Design Contest 2022</p>
 
   <img src="images/logo_4.png" alt="Logo" class="navbar__logo" />
 
