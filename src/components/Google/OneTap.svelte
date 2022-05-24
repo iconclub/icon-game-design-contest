@@ -8,6 +8,8 @@
   import { user } from "../../stores/user.store";
   import { addVoteGame } from "../../stores/vote.store";
 
+  import { closeModal } from "../Modal/SignIn.svelte";
+
   window.handleCredentialResponse = async (response) => {
     const data = await authApi.signInWithGoogle({
       idToken: response.credential,
@@ -40,6 +42,8 @@
     }
 
     addToast({ message: "You're signed in", type: "success" });
+
+    closeModal();
   };
 </script>
 
