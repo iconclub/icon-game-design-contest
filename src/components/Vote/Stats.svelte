@@ -22,11 +22,19 @@
       return;
     }
 
+    if (gameChosen.length > 3) {
+      addToast({
+        message: "Something went wrong! Please reset your votes and try again!",
+        type: "error",
+      });
+      return;
+    }
+
     // Prevent multiple clicks
     btnSubmitRef.disabled = true;
 
     try {
-      await voteApi.sendVotes(voter, gameChosen);
+      await voteApi.sendVotes(voter, gameChosen.slice(0, 3));
 
       addToast({
         message: "Your votes have been submitted!",
