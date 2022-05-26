@@ -19,6 +19,23 @@
 
     $auth.hasSignedIn = true;
 
+    addToast({ message: "You're signed in", type: "success" });
+    closeModal();
+
+    if (decodedToken.isBanned) {
+      $auth.isBanned = true;
+
+      $user = {
+        ...$user,
+        name: decodedToken.name,
+        email: decodedToken.email,
+        avatar: decodedToken.avatar,
+        role: decodedToken.role,
+      };
+
+      return;
+    }
+
     $user = {
       _id: decodedToken.sub,
       email: decodedToken.email,
@@ -40,10 +57,6 @@
         }
       });
     }
-
-    addToast({ message: "You're signed in", type: "success" });
-
-    closeModal();
   };
 </script>
 

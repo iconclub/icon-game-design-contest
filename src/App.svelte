@@ -28,6 +28,20 @@
 
     $auth.hasSignedIn = true;
 
+    if (profile.isBanned) {
+      $auth.isBanned = true;
+
+      $user = {
+        ...$user,
+        name: profile.name,
+        email: profile.email,
+        avatar: profile.avatar,
+        role: profile.role,
+      };
+
+      return;
+    }
+
     $user = {
       _id: profile._id,
       name: profile.name,

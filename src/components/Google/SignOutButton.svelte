@@ -6,7 +6,11 @@
   async function signOut() {
     await authApi.signOut();
 
-    $auth.hasSignedIn = false;
+    $auth = {
+      hasSignedIn: false,
+      isBanned: false,
+    };
+
     $user = {
       _id: "",
       name: "",

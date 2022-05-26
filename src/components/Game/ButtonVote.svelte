@@ -19,6 +19,14 @@
       return;
     }
 
+    if ($auth.isBanned) {
+      addToast({
+        message: "You cannot vote",
+        type: "error",
+      });
+      return;
+    }
+
     if ($user.hasVoted) {
       addToast({
         message: "You have already voted!",
