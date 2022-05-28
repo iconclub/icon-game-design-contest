@@ -87,7 +87,7 @@
   <ModalMobile />
   <ModalSignIn />
   <GamePlaying />
-  <Vote />
+  <!-- <Vote /> -->
 
   <div class="container">
     <GameList />
